@@ -1,0 +1,40 @@
+# Dependencias
+node_modules/
+
+# Builds
+dist/
+build/
+out/
+
+# Logs
+*.log
+logs/
+
+# Variables de entorno
+.env
+.env.*
+!.env.example
+
+# Archivos temporales
+tmp/
+temp/
+
+# Caché
+.cache/
+.npm/
+.eslintcache
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# Datos generados por la aplicación
+instances/
+downloads/
+minecraft/

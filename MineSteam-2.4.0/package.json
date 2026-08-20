@@ -1,0 +1,104 @@
+{
+  "name": "minesteam",
+  "version": "2.4.0",
+  "description": "MineSteam 2.4.0 — Launcher de Minecraft con instancias, perfiles, servidores, Modrinth, contenido, backups, reparación, Java y gestión avanzada.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "build:win": "electron-builder --win --x64",
+    "build:win:nsis": "electron-builder --win nsis --x64",
+    "build:win:portable": "electron-builder --win portable --x64",
+    "build:linux": "electron-builder --linux AppImage",
+    "build:mac": "electron-builder --mac dmg",
+    "test:architecture": "node scripts/smoke-architecture.js",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "author": "Javier Ignacio Lara San Martin",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/javierlarasanmartin/Minesteam.git"
+  },
+  "bugs": {
+    "url": "https://github.com/javierlarasanmartin/Minesteam/issues"
+  },
+  "homepage": "https://github.com/javierlarasanmartin/Minesteam#readme",
+  "devDependencies": {
+    "@electron/rebuild": "^4.2.0",
+    "electron": "^43.4.0",
+    "electron-builder": "^26.15.3"
+  },
+  "dependencies": {
+    "adm-zip": "^0.6.0",
+    "axios": "^1.6.2",
+    "dotenv": "^16.6.1",
+    "electron-store": "^8.1.0",
+    "electron-updater": "^6.8.9",
+    "express": "^5.2.1",
+    "extract-zip": "^2.0.1",
+    "fs-extra": "^11.2.0",
+    "open": "^11.0.0",
+    "p-limit": "^3.1.0",
+    "winston": "^3.11.0"
+  },
+  "build": {
+    "appId": "com.javierlarasanmartin.minesteam",
+    "productName": "MineSteam",
+    "directories": {
+      "output": "dist"
+    },
+    "asar": true,
+    "asarUnpack": [
+      "**/*.node"
+    ],
+    "files": [
+      "src/**/*",
+      "assets/**/*",
+      "bundled_versions/**/*",
+      "index.html",
+      "main.js",
+      "preload.js",
+      "renderer.js",
+      "styles.css",
+      "!**/*.test.js",
+      "!**/__tests__"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "assets/icon.ico",
+      "publisherName": "Javier Ignacio Lara San Martin"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "linux": {
+      "icon": "assets/icon.png",
+      "category": "Game"
+    },
+    "mac": {
+      "icon": "assets/icon.icns",
+      "category": "public.app-category.games"
+    },
+    "publish": {
+      "provider": "github",
+      "releaseType": "release"
+    }
+  }
+}
