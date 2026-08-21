@@ -3,7 +3,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const logger = require('../utils/logger');
 
-const USER_AGENT = 'MineSteam/3.0.0';
+const USER_AGENT = 'MineSteam/2.4.0';
 const FABRIC_META_BASE = 'https://meta.fabricmc.net/v2';
 
 const REQUEST_CONFIG = {

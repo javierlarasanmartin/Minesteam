@@ -805,9 +805,15 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;o
 .page-hero,.feature-card,.tool-section,.filters-container{background:linear-gradient(145deg,#2a170c,#170b06)!important;border-color:#68401f!important}.btn-secondary{background:#24140b!important;border-color:#70431f!important;color:#d5b07d!important}.btn-primary{background:linear-gradient(180deg,#b96f29,#713f1a)!important;border-color:#d48b37!important;color:#fff1d0!important}.btn-danger{background:#7f291f!important}.modal{background:rgba(5,2,1,.82)!important}.modal-content{background:linear-gradient(145deg,#2b170c,#150a06)!important;border-color:#75451f!important}.form-group input,.form-group select,.form-group textarea{background:#120906!important;border-color:#69401f!important;color:#f3d7a8!important}
 .instances-header h2,.section-title,.tool-section-head h3,.page-hero h2{font-family:Georgia,serif!important;color:#f0d0a0!important}.badge{background:#69401f!important;color:#ffe1ae!important;border:1px solid #9c6027}.chip{background:#29150b!important;border-color:#68401f!important;color:#d6b07a!important}
 
-.ram-scale{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:4px;margin-top:6px;color:#8f6d48;font-size:9px;font-weight:700}.ram-scale span{text-align:center}.ram-scale span:first-child{text-align:left}.ram-scale span:last-child{text-align:right}.form-group input[type="range"]{accent-color:#c17c2e}
+.ram-control{position:relative;padding:0 2px 25px}.ram-control input[type="range"]{display:block;width:100%;margin:4px 0 0;accent-color:#c17c2e}.ram-markers{position:absolute;left:2px;right:2px;bottom:0;height:18px;pointer-events:none;color:#a9855d;font-size:9px;font-weight:800}.ram-marker{position:absolute;top:0;transform:translateX(-50%);white-space:nowrap}.ram-marker:before{content:"";position:absolute;left:50%;bottom:13px;width:1px;height:5px;background:#9b6029;opacity:.9}.ram-marker-end{transform:translateX(-100%)}.ram-marker-end:before{left:100%}.form-group input[type="range"]{accent-color:#c17c2e}
 @media(max-width:1200px){.app{grid-template-columns:220px minmax(0,1fr)}.dashboard-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.instance-hero-panel{grid-template-columns:70px 1fr}.hero-play-zone{grid-column:2;text-align:left}.hero-detail-link{margin-left:0}.steampunk-topnav{display:none}}
 @media(max-width:760px){.app{display:block}.sidebar{position:fixed;left:0;top:0;bottom:0;width:260px;z-index:100;transform:translateX(-100%)}.sidebar.open{transform:translateX(0)}.main{height:100vh;padding:10px}.dashboard-grid,.dashboard-lower-grid{grid-template-columns:1fr}.instance-hero-panel{grid-template-columns:1fr;text-align:center}.hero-minecraft-badge{margin:auto}.hero-play-zone{text-align:center;grid-column:auto}.hero-detail-link{margin:9px auto 0}.hero-chips{justify-content:center}.activity-grid{grid-template-columns:1fr}.topbar-title{display:none}.steampunk-header{position:relative}.main-actions .brass-action{font-size:0}.main-actions .brass-action i{font-size:13px}.main-actions{margin-left:auto}}
+
+
+/* RAM 2.4.0 — indicadores alineados con la escala real del slider (1–32 GB) */
+.ram-control{min-width:0}
+.instance-ram-panel .ram-control{flex:1}
+.instance-ram-panel .ram-markers{font-size:9px}
 
 /* MineSteam 2.4.0 — Layout simplificado: usar todo el ancho disponible */
 .app{
@@ -1332,7 +1338,7 @@ MODALES
             </div>
             <div class="form-group">
                 <label>Memoria RAM: <span id="ram-display-modal">4 GB</span></label>
-                <input type="range" id="instancia-ram" min="1024" max="32768" step="512" value="4096" list="ram-markers" style="width:100%;"><datalist id="ram-markers"><option value="4096" label="4 GB"></option><option value="8192" label="8 GB"></option><option value="16384" label="16 GB"></option><option value="32768" label="32 GB"></option></datalist><div class="ram-scale"><span>1 GB</span><span>4 GB</span><span>8 GB</span><span>16 GB</span><span>32 GB</span></div>
+                <div class="ram-control"><input type="range" id="instancia-ram" min="1024" max="32768" step="512" value="4096" style="width:100%;"><div class="ram-markers" aria-hidden="true"><span class="ram-marker" style="left:9.68%">4 GB</span><span class="ram-marker" style="left:22.58%">8 GB</span><span class="ram-marker" style="left:47.58%">16 GB</span><span class="ram-marker ram-marker-end" style="left:100%">32 GB</span></div></div>
             </div>
             <div class="form-actions">
                 <button type="button" id="btn-crear-instancia" class="btn-primary"><i class="fa-solid fa-plus"></i> Crear</button>
@@ -1451,7 +1457,7 @@ MODALES
         <strong id="detail-ram-control-value" style="color:var(--accent);font-size:16px;">4 GB</strong>
       </div>
       <div style="display:grid;grid-template-columns:1fr 110px auto;gap:10px;align-items:center;">
-        <input id="detail-ram-range" type="range" min="1024" max="32768" step="512" value="4096" style="width:100%;"><div class="ram-scale"><span>1 GB</span><span>4 GB</span><span>8 GB</span><span>16 GB</span><span>32 GB</span></div>
+        <div class="ram-control"><input id="detail-ram-range" type="range" min="1024" max="32768" step="512" value="4096" style="width:100%;"><div class="ram-markers" aria-hidden="true"><span class="ram-marker" style="left:9.68%">4 GB</span><span class="ram-marker" style="left:22.58%">8 GB</span><span class="ram-marker" style="left:47.58%">16 GB</span><span class="ram-marker ram-marker-end" style="left:100%">32 GB</span></div></div>
         <input id="detail-ram-input" type="number" min="1024" max="32768" step="512" value="4096" style="width:100%;">
         <button class="btn-primary" id="detail-ram-save" style="padding:8px 12px;"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
       </div>
